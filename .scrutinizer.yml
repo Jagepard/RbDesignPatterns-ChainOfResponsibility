@@ -1,0 +1,14 @@
+checks:
+    ruby: true
+build:
+    nodes:
+        analysis:
+            tests:
+                override:
+                    - ruby-scrutinizer-run
+                    -
+                        command: rubocop-run
+                        use_website_config: true
+            environment:
+                ruby:
+                    version: 2.1.2
