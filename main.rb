@@ -1,17 +1,20 @@
+=begin
+author  : Jagepard <jagepard@yandex.ru>
+license https://mit-license.org/ MIT
+=end
+
 require './Chain'
 require './NoticeHandler'
 require './WarningHandler'
 require './ErrorHandler'
 
-chain = Chain.new()
+notice = NoticeHandler.new()
 
 begin
-    chain.addToChain(NoticeHandler.new())
-    chain.addToChain(WarningHandler.new())
-    chain.addToChain(ErrorHandler.new())
-    chain.execute("NoticeHandler")
-    chain.execute("WarningHandler")
-    chain.execute("ErrorHandler")
+    notice.setNext(WarningHandler.new()).setNext(ErrorHandler.new())
+    notice.execute("NoticeHandler")
+    notice.execute("WarningHandler")
+    notice.execute("ErrorHandler")
 rescue Exception => e
     puts e.message
     puts e.backtrace.inspect
