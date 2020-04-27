@@ -7,10 +7,10 @@ require "./NoticeHandler"
 require "./WarningHandler"
 require "./ErrorHandler"
 
-notice = NoticeHandler.new()
+notice = NoticeHandler.new
 
 begin
-    notice.setNext(WarningHandler.new()).setNext(ErrorHandler.new())
+    notice.set_next(WarningHandler.new).set_next(ErrorHandler.new)
     notice.execute("NoticeHandler")
     notice.execute("WarningHandler")
     notice.execute("ErrorHandler")
