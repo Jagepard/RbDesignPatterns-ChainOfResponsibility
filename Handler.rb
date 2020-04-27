@@ -19,8 +19,9 @@ class Handler
         @next.execute(request)
     end
 
-    def setNext(handler)
+    # @param [Handler] handler
+    def set_next(handler)
         @next = handler
-        return handler
+        handler
     end
 end
